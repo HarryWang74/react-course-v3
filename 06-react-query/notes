@@ -1,0 +1,20 @@
+启动 backend
+    go to server folder
+    npm install
+    npm start
+    http://localhost:5000/api/tasks
+
+启动 UI
+    go to final folder, 
+    npm install, 
+    npm run dev
+    http://localhost:5173/
+
+thunderCLient 使用
+
+关键知识
+    在 utils.js 设置 axios，import to different component talk to API
+    wrap 所有 api 交互逻辑 reactQueryCustomHooks.jsx
+        * 每个交互逻辑是一个 custom hook, useFetchTasks, useCreateTask...
+        * 更灵活方便可以用到不同 component
+        * create/edit/del success call API reload list
