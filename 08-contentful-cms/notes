@@ -1,0 +1,5 @@
+把 app 内容（图片，文字... ) 存储到 https://www.contentful.com/
+request content from contentful using API
+    * 更加灵活
+如何设置 contentful
+使用 web hook 特别条件下，利用 rebuild hook (url) call UI redeploy
