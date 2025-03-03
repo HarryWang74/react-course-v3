@@ -1,0 +1,16 @@
+how to run project
+    npm install
+    npm start
+    在 app.js 里 import final/examples
+
+FirstRequest
+    最简单，import axios 在 useEffect fetch data
+
+Headers
+    设置 Axios header 接受 application/json
+
+CustomInstance
+    global 定义 axios base URL 在不同 component 里使用
+
+Interceptors
+    定义 Axios request, response
