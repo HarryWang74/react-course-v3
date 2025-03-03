@@ -1,0 +1,41 @@
+app 基本 structure, 设置 index.js 简化输入
+使用 styled-component, 在 js 里写 styling 不用 scss 或 css.
+使用 router loading, 
+    一个 loading 在 layout 里，每个 children不用再设置 loading
+    在 children render 前就可以 request data 
+outlet context homeLayout 演示，，没有实际应用，context api 的替代
+react query cache data 设置
+
+在 app.jsx 里设置 routing
+    * 设置 react query cache content in 5mins. (mot call API)
+    * 所有页面使用 HomeLayout, global error page 显示 routing error
+    * 其它 page 作为 HomeLayout 的 children
+    * 使用 router loading, 
+        一个 loading 在 layout 里，每个 children不用再设置 loading
+        在 children render 前就可以 request data
+    landing
+        list page for all items
+        
+        定义 base url
+        定义 query string (baseURL + search terms)
+        定义 loader 然后 refer it to router,  所以 component can start request data before render
+        
+        fetch data from api 然后传递给 list component
+        点击 item, 通过 router pass id to detail page
+
+
+    detail page
+        fetch item detail data by id from API
+        display detail data
+        
+        定义 base url
+        定义 query string (baseURL + search terms)
+        定义 loader 然后 refer it to router,  所以 component can start request data before render
+
+    form page
+        submit a form to API
+        js form data API
+        success call back redirect
+
+
+        

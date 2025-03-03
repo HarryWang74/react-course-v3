@@ -11,6 +11,7 @@ const searchCocktailsQuery = (searchTerm) => {
   return {
     queryKey: ['search', searchTerm || 'all'],
     queryFn: async () => {
+      searchTerm = searchTerm || 'all'
       const response = await axios.get(`${cocktailSearchUrl}${searchTerm}`);
       return response.data.drinks;
     },
@@ -20,6 +21,7 @@ const searchCocktailsQuery = (searchTerm) => {
 export const loader =
   (queryClient) =>
   async ({ request }) => {
+    // 改变 browser URL
     const url = new URL(request.url);
 
     const searchTerm = url.searchParams.get('search') || '';
