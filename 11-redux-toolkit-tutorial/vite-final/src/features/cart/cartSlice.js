@@ -15,9 +15,9 @@ export const getCartItems = createAsyncThunk(
   'cart/getCartItems',
   async (name, thunkAPI) => {
     try {
-      // console.log(name);
-      // console.log(thunkAPI);
-      // console.log(thunkAPI.getState());
+      console.log(name);
+      console.log(thunkAPI);
+      console.log(thunkAPI.getState());
       // thunkAPI.dispatch(openModal());
       const resp = await axios(url);
 
@@ -76,7 +76,6 @@ const cartSlice = createSlice({
 });
 
 // console.log(cartSlice);
-export const { clearCart, removeItem, increase, decrease, calculateTotals } =
-  cartSlice.actions;
+export const { clearCart, removeItem, increase, decrease, calculateTotals } = cartSlice.actions;
 
 export default cartSlice.reducer;

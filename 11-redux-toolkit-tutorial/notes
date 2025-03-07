@@ -1,0 +1,22 @@
+使用 redux toolset 一次性安装设置系列 library
+使用 immer 可以大大减轻代码量
+
+run project
+    go to vite final folder
+    npm install, npm run dev
+
+如何工作
+    从 api 读数据
+    cart 通过 store/state 显示数据，item 增加/减少，计算 total, 
+    modal 通过 store/state 显示或隐藏，清理 cart
+
+main.js
+    import 自定义 store
+store.js
+    import cartReducer, modalReducer 初始化 store
+    使用 immer 
+app.js
+    nav, conditional show/hide model, cart
+features/child/
+    cart, modal, navbar
+    使用 redux tool kit 简化代码后需要创建 slice as reducer
