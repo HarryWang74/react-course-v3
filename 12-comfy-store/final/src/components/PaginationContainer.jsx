@@ -12,7 +12,7 @@ const PaginationContainer = () => {
   const handlePageChange = (pageNumber) => {
     const searchParams = new URLSearchParams(search);
     searchParams.set('page', pageNumber);
-    navigate(`${pathname}?${searchParams.toString()}`);
+    navigate(`${pathname}?${searchParams.toString()}`); // 保持当前的 search url 加上 page 
   };
 
   if (pageCount < 2) return null;

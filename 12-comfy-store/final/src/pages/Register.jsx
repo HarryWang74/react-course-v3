@@ -4,6 +4,8 @@ import { customFetch } from '../utils';
 import { toast } from 'react-toastify';
 
 export const action = async ({ request }) => {
+  // 使用 form api, submit form change URL reload page
+  // router 使用 Register 里定义的 action, page reload 时从 router 里读数据
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 

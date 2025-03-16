@@ -1,0 +1,82 @@
+[Complete Project](https://react-vite-comfy-store-v2.netlify.app/)
+[API DOCS](https://documenter.getpostman.com/view/18152321/2s9Xy5KpTi)
+
+overall
+    npm run start dev to start project
+    user: james@gmail.com
+    pwd: secret
+home
+    * load featured items from API
+    * in routing use loader, 读完数据后，传给 product grid component
+        * 作者所有写法都是 const { products } = useLoaderData();
+        * 这样是很方便，代码量很少但不是太灵活，感觉还是用 pop 更实用，特别是非常复杂的系统
+items listing
+    https://strapi-store-server.onrender.com/api/products
+    * load featured items from API, item array 在 response.data 里，pageSize, total ... 在 response.meta 里
+    * 两个显示模式，用不同 component 显示 all items
+    * 点击 item 进入 detail page
+    filter
+        * 作者一直用 default from API, 所以 submit 以后会在当前页面 url 加上 para
+        * API 能 handle url para 所以最简化了代码，
+        * https://strapi-store-server.onrender.com/api/products?search=s&category=all&company=all&order=a-z&price=100000&shipping=true
+    paging
+        * 独立 component, 从 loader 读 API return meta data
+        * 点击 paging, keep current search url 加上 page number
+        * navigate(`${pathname}?${searchParams.toString()}`);
+        * http://localhost:5174/products?search=&category=all&company=all&order=a-z&price=100000&shipping=on&page=2
+item detail
+    * 从 API 读数据
+    * 点击 add to cart 把页面当前 item 和所有选项 dispath 到 store
+    * 具体看 C:\Users\harry\Desktop\my projects\react-course-v3\12-comfy-store\final\src\features\cart\cartSlice.js
+login/logout
+    login 单独页面
+        所有 validation 使用 input html native api 简化代码
+        使用 form api, submit form change URL reload page
+        router 使用 page 里定义的 action, page reload 时从 router 里读数据
+        把 form data 传递给 login API, 成功后 dispath callback data 到 store
+    guest user
+        login as guest user
+        使用 hard code user and pwd
+    logout btn
+        dispath logout action to store
+
+create user
+    所有 validation 使用 input html native api 简化代码
+    使用 form api, submit form change URL reload page
+    router 使用 page 里定义的 action, page reload 时从 router 里读数据
+    const formData = await request.formData();
+    const data = Object.fromEntries(formData);
+    创建用户成功，redirect to login page
+    API 段重复 validation
+cart
+    detail page, 选数量，颜色，型号，点击 add to cart, 把当前选项 dispath 到 store
+    点击 cart icon 或 从 nav 进入 cart page
+    cart page, 从 store 读数据，显示所有选项，可以修改数量，删除选项
+    用 productID + color + size 做 key, 反复添加同一选择能正确重复计算
+checkout
+    router 使用 page 里定义的 loader, 有 routing guide 
+    如果用户不存在，redirect 防止从 URl 直接进入
+    checkout form 
+        * 定义 action 给 router 使用
+        * 使用 form api, submit form change URL reload page
+        * router 使用 page 里定义的 action, page reload 时从 router 里读数据, name address
+        * 从 store 读数据，把 cart data 加上 name address 传递给 checkout API
+        * 传数据时要加上 token
+        const response = await customFetch.post(
+        '/orders',
+        { data: info },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+order
+    router 使用 page 里定义的 loader, 有 routing guide 
+    如果用户不存在，redirect 防止从 URl 直接进入
+    complex paging
+theme
+    每次切换 theme dispatch action then do it in user reducer
+    写到 local storage
+    用 js 改变 html attribute，然后改变 styling
+    document.documentElement.setAttribute('data-theme', state.theme);

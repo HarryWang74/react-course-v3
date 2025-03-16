@@ -7,6 +7,10 @@ const allProductsQuery = (queryParams) => {
     queryParams;
 
   return {
+    // 作者一直用 default from API, 所以 submit 以后会在当前页面 url 加上 para
+    // API 能 handle url para 所以最简化了代码，
+    // https://strapi-store-server.onrender.com/api/products?search=s&category=all&company=all&order=a-z&price=100000&shipping=true
+    // 这里定义默认值
     queryKey: [
       'products',
       search ?? '',
